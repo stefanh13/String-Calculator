@@ -45,5 +45,11 @@ public class CalculatorTest
 		
 	}
 
+	@Test
+	public void testMultipleNumbersWithNewLine()
+	{
+		assertEquals(10, Calculator.add("1,2\n3\n4"));
+
+	}
 	
 }	
