@@ -18,7 +18,8 @@ public class Calculator
 			String regex = "";
 			if(hasNewDelimiter(text))
 			{
-				return 10;
+				regex = getDelimiter(text);
+				text = text.substring(4, text.length());
 			}
 			else
 			{
@@ -51,5 +52,9 @@ public class Calculator
 		return text.substring(0,2).equals("//");
 	}
 
+	private static String getDelimiter(String text)
+	{
+		return "[\\n " + text.substring(2,3) + "]";
+	}
 	
 }
