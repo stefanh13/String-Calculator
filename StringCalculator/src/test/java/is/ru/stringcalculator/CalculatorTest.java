@@ -51,5 +51,12 @@ public class CalculatorTest
 		assertEquals(10, Calculator.add("1,2\n3\n4"));
 
 	}
+
+	@Test
+	public void testIfStartsWithDoubleSlash()
+	{
+		assertEquals(10, Calculator.add("//1,2\n3\n4"));
+
+	}
 	
 }	

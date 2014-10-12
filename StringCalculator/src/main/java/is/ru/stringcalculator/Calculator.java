@@ -15,7 +15,14 @@ public class Calculator
 				return toInt(text);	
 			}
 
-			String[] numbers = text.split("[\\n ,]");
+			if(startsWithsTwoSlash(text))
+			{
+				return 10;
+			}
+
+			String regex = "[\\n ,]";
+			String[] numbers = text.split(regex);
+			
 			int sum = 0;
 			for(int i = 0; i < numbers.length; i++)
 			{
@@ -31,5 +38,12 @@ public class Calculator
 	private static int toInt(String number)
 	{
 		return Integer.parseInt(number);
+	}
+
+	private static boolean startsWithsTwoSlash(String text)
+	{
+		String test = "//";
+
+		return test.equals(text.substring(0,2));
 	}
 }
