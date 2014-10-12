@@ -28,6 +28,11 @@ public class Calculator
 
 			
 			String[] numbers = text.split(regex);
+
+			if(hasNegative(numbers))
+			{
+				return -1;
+			}
 			
 			int sum = 0;
 			for(int i = 0; i < numbers.length; i++)
@@ -55,6 +60,30 @@ public class Calculator
 	private static String getDelimiter(String text)
 	{
 		return "[\\n " + text.substring(2,3) + "]";
+	}
+
+	private static boolean hasNegative(String[] text)
+	{
+		int[] negatives = new int[text.length];
+		int index = 0;
+		for(int i = 0; i < text.length; i++)
+		{
+
+			if(toInt(text[i]) < 0)
+			{
+				negatives[index] = toInt(text[i]);
+				index++;
+			}
+		
+		}
+
+		if(index != 0)
+		{
+			return true;
+		}
+		
+
+		return false;
 	}
 	
 }

@@ -67,5 +67,14 @@ public class CalculatorTest
 
 	}
 
+	@Test
+	public void testIfHasNegative()
+	{
+		assertEquals(-1, Calculator.add("//;\n1;-2;3\n-4"));
+
+	}
+
+
+
 	
 }	
