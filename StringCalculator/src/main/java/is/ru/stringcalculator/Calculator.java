@@ -12,14 +12,19 @@ public class Calculator
 		{
 			if(!text.contains(","))
 			{
-				return Integer.parseInt(text);	
+				return toInt(text);	
 			}
 
 			String[] numbers = text.split(",");
 
-			return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
+			return toInt(numbers[0]) + toInt(numbers[1]);
 			
 		}
 		
+	}
+
+	private static int toInt(String number)
+	{
+		return Integer.parseInt(number);
 	}
 }
