@@ -10,7 +10,15 @@ public class Calculator
 		}
 		else
 		{
-			return Integer.parseInt(text);
+			if(!text.contains(","))
+			{
+				return Integer.parseInt(text);	
+			}
+
+			String[] numbers = text.split(",");
+
+			return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
+			
 		}
 		
 	}
