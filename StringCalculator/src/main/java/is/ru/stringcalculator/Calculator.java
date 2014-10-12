@@ -16,8 +16,13 @@ public class Calculator
 			}
 
 			String[] numbers = text.split(",");
+			int sum = 0;
+			for(int i = 0; i < numbers.length; i++)
+			{
+				sum += toInt(numbers[i]);	
+			}
 
-			return toInt(numbers[0]) + toInt(numbers[1]);
+			return sum;
 			
 		}
 		

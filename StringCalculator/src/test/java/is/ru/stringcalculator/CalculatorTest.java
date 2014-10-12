@@ -30,5 +30,20 @@ public class CalculatorTest
 		assertEquals(8, Calculator.add("1,7"));
 	}
 
+	@Test
+	public void testMultipleNumbers()
+	{
+		String numbers = "0";
+		int sum = 0;
+		for(int i = 1; i < 100; i++)
+		{
+
+			assertEquals(sum, Calculator.add(numbers));
+			numbers += "," + i;	
+			sum += i;
+		}
+		
+	}
+
 	
 }	
