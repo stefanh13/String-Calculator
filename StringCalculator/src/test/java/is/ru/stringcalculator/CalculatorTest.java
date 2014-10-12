@@ -52,11 +52,13 @@ public class CalculatorTest
 
 	}
 
+
 	@Test
-	public void testIfStartsWithDoubleSlash()
+	public void testAnotherDelimiter()
 	{
-		assertEquals(10, Calculator.add("//1,2\n3\n4"));
+		assertEquals(10, Calculator.add("//;\n1;2;3\n4"));
 
 	}
+
 	
 }	

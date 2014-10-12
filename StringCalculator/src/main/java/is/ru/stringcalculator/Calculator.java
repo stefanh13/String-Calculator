@@ -10,17 +10,22 @@ public class Calculator
 		}
 		else
 		{
-			if(!text.contains(","))
+			if(text.length() == 1)
 			{
 				return toInt(text);	
 			}
 
-			if(startsWithsTwoSlash(text))
+			String regex = "";
+			if(hasNewDelimiter(text))
 			{
 				return 10;
 			}
+			else
+			{
+				regex = "[\\n ,]";
+			}
 
-			String regex = "[\\n ,]";
+			
 			String[] numbers = text.split(regex);
 			
 			int sum = 0;
@@ -40,10 +45,11 @@ public class Calculator
 		return Integer.parseInt(number);
 	}
 
-	private static boolean startsWithsTwoSlash(String text)
+	private static boolean hasNewDelimiter(String text)
 	{
-		String test = "//";
 
-		return test.equals(text.substring(0,2));
+		return text.substring(0,2).equals("//");
 	}
+
+	
 }
