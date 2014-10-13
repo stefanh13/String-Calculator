@@ -1,5 +1,6 @@
 package is.ru.stringcalculator;
 
+
 public class Calculator
 {
 	public static int add(String text)
@@ -29,10 +30,8 @@ public class Calculator
 			
 			String[] numbers = text.split(regex);
 
-			if(hasNegative(numbers))
-			{
-				return -1;
-			}
+			hasNegative(numbers);
+			
 			
 			int sum = 0;
 			for(int i = 0; i < numbers.length; i++)
@@ -62,7 +61,7 @@ public class Calculator
 		return "[\\n " + text.substring(2,3) + "]";
 	}
 
-	private static boolean hasNegative(String[] text)
+	private static void hasNegative(String[] text)
 	{
 		int[] negatives = new int[text.length];
 		int index = 0;
@@ -77,13 +76,20 @@ public class Calculator
 		
 		}
 
-		if(index != 0)
-		{
-			return true;
-		}
+				
+			if(index != 0)
+			{	
+				String errorMessage = Integer.toString(negatives[0]);
+				for(int i = 1; i < index; i++)
+				{
+					errorMessage += "," + Integer.toString(negatives[i]);
+				}
+				throw new RuntimeException("Negatives not allowed:" + errorMessage);
+			}	
+		
+		
 		
 
-		return false;
 	}
 	
 }

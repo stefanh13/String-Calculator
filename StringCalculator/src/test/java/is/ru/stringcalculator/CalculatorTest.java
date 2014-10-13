@@ -67,14 +67,22 @@ public class CalculatorTest
 
 	}
 
+
 	@Test
-	public void testIfHasNegative()
+	public void testNegativeNumberException()
 	{
-		assertEquals(-1, Calculator.add("//;\n1;-2;3\n-4"));
+		String errorMessage = "Negatives not allowed:-2,-4";
+    	
 
+    	try
+    	{
+			Calculator.add("//;\n1;-2;3\n-4");
+		}
+		catch (RuntimeException ex)
+		{
+			assertEquals(errorMessage, ex.getMessage());
+		}
 	}
-
-
 
 	
 }	
