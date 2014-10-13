@@ -34,9 +34,15 @@ public class Calculator
 			
 			
 			int sum = 0;
+			int numberToAdd = 0;
 			for(int i = 0; i < numbers.length; i++)
 			{
-				sum += toInt(numbers[i]);	
+				numberToAdd = toInt(numbers[i]);
+				if(numberToAdd > 1000)
+				{
+					continue;
+				}
+				sum += numberToAdd;	
 			}
 
 			return sum;
@@ -61,16 +67,22 @@ public class Calculator
 		return "[\\n " + text.substring(2,3) + "]";
 	}
 
+	private static String intToString(int number)
+	{
+		return Integer.toString(number);
+	}
+
 	private static void hasNegative(String[] text)
 	{
 		int[] negatives = new int[text.length];
 		int index = 0;
+		int checkNumber = 0;
 		for(int i = 0; i < text.length; i++)
 		{
-
-			if(toInt(text[i]) < 0)
+			checkNumber = toInt(text[i]);
+			if(checkNumber < 0)
 			{
-				negatives[index] = toInt(text[i]);
+				negatives[index] = checkNumber;
 				index++;
 			}
 		
@@ -79,17 +91,14 @@ public class Calculator
 				
 			if(index != 0)
 			{	
-				String errorMessage = Integer.toString(negatives[0]);
+				String errorMessage = intToString(negatives[0]);
 				for(int i = 1; i < index; i++)
 				{
-					errorMessage += "," + Integer.toString(negatives[i]);
+					errorMessage += "," + intToString(negatives[i]);
 				}
 				throw new RuntimeException("Negatives not allowed:" + errorMessage);
 			}	
 		
-		
-		
-
 	}
 	
 }
