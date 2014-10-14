@@ -17,18 +17,41 @@ public class Calculator
 			}
 
 			String regex = "";
+			String[] numbers;
 			if(hasNewDelimiter(text))
 			{
-				regex = getDelimiter(text);
 				
+				
+				int end = text.length();
 				if(text.substring(2,3).equals("["))
 				{
-					text = text.substring(text.indexOf("]") + 3, text.length());
+					text = text.substring(2, end);
+					
+					while(text.contains("["))
+					{
+						regex = getDelimiter(text);
+						
+						text = text.substring(text.indexOf("]") + 1, text.length());
+						
+						numbers = text.split(regex);
+
+						text = numbers[0];
+						for(int i = 1; i < numbers.length; i++)
+						{
+							text += "," + numbers[i];
+						}
+
+					}
+					
+					text = text.substring(2, text.length());
+					
+					regex = ",";
 					
 				}
 				else
-				{
-					text = text.substring(4, text.length());	
+				{	
+					regex = getDelimiter(text);
+					text = text.substring(4, end);	
 				}
 
 				
@@ -37,8 +60,8 @@ public class Calculator
 			{
 				regex = "[\\n ,]";
 			}
-
-			String[] numbers = text.split(regex);
+		
+			numbers = text.split(regex);
 		
 			hasNegative(numbers);
 			
@@ -76,12 +99,13 @@ public class Calculator
 	private static String getDelimiter(String text)
 	{
 
-		if(text.substring(2,3).equals("["))
+		if(text.contains("["))
 		{
 			int index = text.indexOf("]");
+			int delimiterStart = text.indexOf("[");
 			String regex = "";
-			String delimiter = text.substring(3,4);
-			for(int i = 0; i < index - 3; i++)
+			String delimiter = text.substring(delimiterStart + 1, delimiterStart + 2);
+			for(int i = 0; i < (index - delimiterStart - 1); i++)
 			{
 				regex += "\\" + delimiter;
 			}
@@ -113,7 +137,6 @@ public class Calculator
 		
 		}
 
-				
 			if(index != 0)
 			{	
 				String errorMessage = intToString(negatives[0]);

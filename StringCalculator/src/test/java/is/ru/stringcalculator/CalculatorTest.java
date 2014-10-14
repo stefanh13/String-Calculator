@@ -98,5 +98,12 @@ public class CalculatorTest
 
 	}
 
+	@Test
+	public void testFewDelimiters()
+	{
+		assertEquals(6, Calculator.add("//[*][%]\\n1*2%3"));
+
+	}
+
 	
 }	
