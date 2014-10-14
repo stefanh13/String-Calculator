@@ -20,16 +20,26 @@ public class Calculator
 			if(hasNewDelimiter(text))
 			{
 				regex = getDelimiter(text);
-				text = text.substring(4, text.length());
+				
+				if(text.substring(2,3).equals("["))
+				{
+					text = text.substring(text.indexOf("]") + 3, text.length());
+					
+				}
+				else
+				{
+					text = text.substring(4, text.length());	
+				}
+
+				
 			}
 			else
 			{
 				regex = "[\\n ,]";
 			}
 
-			
 			String[] numbers = text.split(regex);
-
+		
 			hasNegative(numbers);
 			
 			
@@ -38,6 +48,7 @@ public class Calculator
 			for(int i = 0; i < numbers.length; i++)
 			{
 				numberToAdd = toInt(numbers[i]);
+
 				if(numberToAdd > 1000)
 				{
 					continue;
@@ -64,6 +75,20 @@ public class Calculator
 
 	private static String getDelimiter(String text)
 	{
+
+		if(text.substring(2,3).equals("["))
+		{
+			int index = text.indexOf("]");
+			String regex = "";
+			String delimiter = text.substring(3,4);
+			for(int i = 0; i < index - 3; i++)
+			{
+				regex += "\\" + delimiter;
+			}
+			
+			return regex;
+		}
+		
 		return "[\\n " + text.substring(2,3) + "]";
 	}
 
@@ -81,7 +106,7 @@ public class Calculator
 		{
 			checkNumber = toInt(text[i]);
 			if(checkNumber < 0)
-			{
+			{	
 				negatives[index] = checkNumber;
 				index++;
 			}
