@@ -21,11 +21,9 @@ public class Calculator
 			if(hasNewDelimiter(text))
 			{
 				
-				
-				int end = text.length();
-				if(text.substring(2,3).equals("["))
+				if(text.contains("["))
 				{
-					text = text.substring(2, end);
+					text = text.substring(2, text.length());
 					
 					while(text.contains("["))
 					{
@@ -36,6 +34,7 @@ public class Calculator
 						numbers = text.split(regex);
 
 						text = numbers[0];
+						
 						for(int i = 1; i < numbers.length; i++)
 						{
 							text += "," + numbers[i];
@@ -51,7 +50,7 @@ public class Calculator
 				else
 				{	
 					regex = getDelimiter(text);
-					text = text.substring(4, end);	
+					text = text.substring(4, text.length());	
 				}
 
 				

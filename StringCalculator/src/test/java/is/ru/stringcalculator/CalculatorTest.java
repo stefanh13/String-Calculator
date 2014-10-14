@@ -105,5 +105,14 @@ public class CalculatorTest
 
 	}
 
+	@Test
+	public void testFewDelimitersOfAnyLength()
+	{
+		assertEquals(10, Calculator.add("//[**][%%%]\\n1**2%%%3**4"));
+
+	}
+
+
+
 	
 }	
